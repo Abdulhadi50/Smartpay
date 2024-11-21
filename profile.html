@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الملف الشخصي</title>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            user-select: none;
+        }
+        .profile-container {
+            background-color: #fff;
+            width: 360px;
+            padding: 10px;
+            border-radius: 15px;
+            animation: fadeIn 0.5s ease;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .profile-header h2 {
+            font-size: 20px;
+            color: #000;
+            font-weight: 600;
+        }
+        .verification-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .profile-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 15px;
+    margin-bottom: 25px; /* هذه هي المسافة بين الحقول */
+    border: 1px solid #5152FC;
+    border-radius: 10px;
+    background-color: #F8F8F8;
+    transition: background-color 0.2s;
+    color: #000;
+}
+        .profile-item:hover {
+            background-color: #F8F8F8;
+        }
+        .profile-item label {
+            font-size: 14px;
+            color: #000;
+        }
+        .copy-icon, .edit-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s;
+        }
+        .copy-icon:hover, .edit-icon:hover {
+            transform: scale(1.1);
+        }
+        .button {
+            width: 100%;
+            background-color: #5152FC;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #5152FC;
+        }
+        .verify-button {
+            width: 100%;
+            background-color: #FF0000;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .verify-button.verified {
+            background-color: #00D666;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .popup-content {
+            background-color: #F8F8F8;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            width: 85%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            color: #000;
+        }
+        .popup button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(to right, #5152FC, #5152FC);
+            color: white;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #000;
+            
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <!-- Header -->
+    <div class="profile-header">
+        <h2 id="username">اسم المستخدم</h2>
+        <img src="https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A0%D9%A3_%D9%A1%D9%A0%D9%A3%D9%A0%D9%A5%D9%A8.png?alt=media&token=d9a7f109-2fa3-4a7d-a0c0-0bbda946a1ef" class="verification-icon" id="verificationIcon" style="display: none;" />
+    </div>
+
+    <!-- User ID with Copy -->
+    <div class="profile-item">
+        <label>معرف المستخدم</label>
+        <div>
+            <span id="uniqueId">UID</span>
+            <img src="https://img.icons8.com/ios-glyphs/999/000/copy.png" class="copy-icon" onclick="copyToClipboard()" />
+        </div>
+    </div>
+
+    <!-- Email with Edit -->
+    <div class="profile-item">
+        <label>البريد الإلكتروني</label>
+        <div>
+            <span id="email">user@example.com</span>
+        </div>
+    </div>
+
+    <!-- Password Change -->
+    <div class="profile-item">
+        <label>كلمة المرور</label>
+        <button class="button" onclick="sendPasswordReset()">تغيير كلمة المرور</button>
+    </div>
+
+    <!-- Verify Email Button -->
+    <button class="verify-button" id="verifyButton" onclick="verifyEmail()">تحقق من البريد الإلكتروني</button>
+
+    <!-- Logout Button -->
+    <button class="button" onclick="logout()">تسجيل الخروج</button>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">×</span>
+        <p id="popupMessage">تم نسخ UID إلى الحافظة!</p>
+        <button onclick="closePopup()">موافق</button>
+    </div>
+</div>
+
+<script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCd4kBTwhKeJCeuJiaErE0RHX2m8ZpmRtc",
+      authDomain: "smart-pay-6a9b8.firebaseapp.com",
+      projectId: "smart-pay-6a9b8",
+      storageBucket: "smart-pay-6a9b8.appspot.com",
+      messagingSenderId: "9418007073",
+      appId: "1:9418007073:web:0f981978bfd2d8cd263960"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Get current user and update UI
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            const uid = user.uid;
+            // Fetch user data from Firestore
+            db.collection("users").doc(uid).get().then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    document.getElementById("username").innerText = data.name;
+                    document.getElementById("uniqueId").innerText = data.uniqueId;
+                    document.getElementById("email").innerText = user.email;
+
+                    if (user.emailVerified) {
+                        document.getElementById("verifyButton").innerText = "البريد الإلكتروني تم التحقق منه";
+                        document.getElementById("verifyButton").classList.add("verified");
+                        document.getElementById("verifyButton").disabled = true;
+                    }
+
+                    if (data.verified) {
+                        document.getElementById("verificationIcon").style.display = "inline";
+                    }
+                } else {
+                    console.log("Document does not exist!");
+                }
+            }).catch(error => {
+                console.error("Error fetching document:", error);
+            });
+        } else {
+            window.location.href = "go:login";
+        }
+    });
+
+    function copyToClipboard() {
+        const uniqueId = document.getElementById("uniqueId").innerText;
+        navigator.clipboard.writeText(uniqueId).then(() => {
+            showPopup("تم نسخ UID إلى الحافظة!");
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
+    // Send email change link
+    function sendEmailChange() {
+        const email = document.getElementById("email").innerText;
+        const actionCodeSettings = {
+            url: 'https://yourapp.com/finishEmailChange',
+            handleCodeInApp: true
+        };
+
+        auth.currentUser.verifyBeforeUpdateEmail(email, actionCodeSettings).then(() => {
+            showPopup("تم إرسال رابط تغيير البريد الإلكتروني إلى " + email);
+        }).catch(error => {
+            console.error("Error sending email change link:", error);
+        });
+    }
+
+    // Send password reset email
+    function sendPasswordReset() {
+        const email = auth.currentUser.email;
+        auth.sendPasswordResetEmail(email).then(() => {
+            showPopup("تم إرسال رابط إعادة تعيين كلمة المرور إلى " + email);
+        }).catch(error => {
+            console.error("Error sending password reset email:", error);
+        });
+    }
+
+    // Verify email
+    function verifyEmail() {
+        auth.currentUser.sendEmailVerification().then(() => {
+            showPopup("تم إرسال رابط التحقق من البريد الإلكتروني إلى " + auth.currentUser.email);
+        }).catch(error => {
+            console.error("Error sending verification email:", error);
+        });
+    }
+
+    // Logout user
+    function logout() {
+        auth.signOut().then(() => {
+            window.location.href = "go:login";
+        }).catch(error => {
+            console.error("Error signing out:", error);
+        });
+    }
+
+    // Show popup
+    function showPopup(message) {
+        document.getElementById("popupMessage").innerText = message;
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    // Close popup
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>

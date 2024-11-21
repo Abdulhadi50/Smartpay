@@ -15,7 +15,7 @@
         }
         body {
     font-family: 'Arial', sans-serif;
-    background-color: #000;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: flex-start; /* جعل المحتوى يبدأ من الأعلى */
@@ -26,22 +26,23 @@
 
 .container {
     width: 400px;
-    padding: 20px;
+    padding: 15px;
     margin-top: 100px; /* تغيير الهامش العلوي */
     /* يمكنك إضافة ارتفاع محدد إذا كنت تريد */
 }
         .profile {
             margin-bottom: 20px;
             text-align: center;
+            margin-top: 40px;
         }
         .profile h2 {
             font-size: 20px;
-            color: #fff;
+            color: #000;
             display: inline; /* لعرض الصورة بجانب الاسم */
         }
         .profile p {
             font-size: 15px;
-            color: #8a8a8a;
+            color: #000;
         }
         .copy-icon {
             width: 20px;
@@ -49,45 +50,80 @@
             margin-left: 10px;
         }
         .balance-container {
-            text-align: center;
-            background-color: #1C1D22;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 40px;
-        }
-        .balance-container h3 {
-            font-size: 18px;
-            color: #777;
-        }
-        .balance-container .balance {
-            font-size: 25px;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #fff;
-        }
-        .balance-container .currency {
-            font-size: 16px;
-            color: #666;
-        }
+    text-align: center;
+    background-color: #F8F8F8;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    
+}
+
+.balance-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* مسافة بين الصورة والنص */
+}
+
+.balance-title h3 {
+    font-size: 18px;
+    color: #000;
+    margin: 0;
+}
+
+.turkey-flag {
+    width: 28px; /* حجم الصورة */
+    height: 28px;
+    border-radius: 50%; /* جعل الصورة دائرية */
+    margin-bottom: 5px;
+}
+
+.balance-container .balance {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #000;
+}
+
+.balance-container .currency {
+    font-size: 16px;
+    color: #666;
+}
         .button-container {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
         button {
-            background-color: #1C1D22;
+            background-color: #F8F8F8;
             color: white;
             padding: 5px 10px;
             border: none;
-            border-radius: 50px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
             transition: background 0.3s;
-            width: 20%; /* لتناسب الزرين جنباً إلى جنب */
+            width: 55px;
+            height: 55px;
         }
         
         button img {
           width: 30px;
             height: 30px;
         }
+        
+        .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+.button-title {
+    margin-top: 5px;
+    color: #000;
+    font-size: 14px;
+}
+
         /* CSS Popup */
         .popup {
             display: none;
@@ -99,34 +135,35 @@
             background-color: rgba(0, 0, 0, 0.6);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            animation: fadeIn 0.3s ease;
         }
         .popup-content {
-            background-color: #1C1D22;
-            border-radius: 25px;
-            padding: 30px;
+            background-color: #F8F8F8;
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
-            width: 80%;
+            width: 85%;
             max-width: 400px;
             position: relative;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            color: #fff;
+            color: #000;
+        }
+        .popup button {
+            padding: 8px 30px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(to right, #5152FC, #5152FC);
+            color: #000;
+            font-size: 16px;
+            margin-top: 15px;
         }
         .close-btn {
             position: absolute;
             top: 10px;
             right: 15px;
             font-size: 24px;
-            color: #fff;
-        }
-        .popup button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 15px;
-            background: linear-gradient(to right, #3EDAB3, #3EDAB3, #3EDAB3);
-            color: white;
-            font-size: 16px;
-            margin-top: 15px;
+            color: #000;
+            
         }
         
         .verification-icon {
@@ -137,22 +174,26 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    gap: 230px;
-    margin-top: -80px
+    margin-top: -80px;
 }
 
 .icon {
-    background-color: #1C1D22; /* لون خلفية */
+    background-color: #f7f7f7; /* لون خلفية */
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     transition: background 0.3s;
-    width: 35px; /* عرض الكونتينر */
-    height: 35px; /* ارتفاع الكونتينر */
+    width: 50px; /* عرض الكونتينر */
+    height: 50px; /* ارتفاع الكونتينر */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* تخصيص الأيقونة الوسطى بإضافة مسافة إضافية بينها وبين الملف الشخصي */
+.middle-icon {
+    margin-right: auto; /* يحرك الأيقونة الوسطى إلى جهة اليسار */
+    margin-left: 20px; /* يضيف تباعد بينها وبين أيقونة الملف الشخصي */
+}
 
 .icon img {
     width: 24px; /* حجم الأيقونة */
@@ -160,29 +201,43 @@
 }
 
 .nav-container {
-            position: fixed;
-            bottom: 15px;
-            left: 5%;
-            right: 5%;
-            background-color: #1e2126;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 10px 0;
-        }
-        .nav {
-            display: flex;
-            justify-content: space-around;
-        }
-        .nav button {
-            background-color: transparent;
-            color: #e0e0e0;
-            border: none;
-            font-size: 14px;
-        }
-        .nav button img {
-            width: 30px;
-            height: 30px;
-        }
+    position: fixed;
+    bottom: 20px; /* لتقريب الأزرار السفلية */
+    left: 5%;
+    right: 5%;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* لمحاذاة العناصر عمودياً */
+}
+
+.nav button img {
+    width: 30px;
+    height: 30px;
+}
+
+.nav button {
+ background-color: #fff;
+ border: 1px solid #ddd;
+}
+
+.nav button.home-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-top: -20px; /* رفع زر المنزل لأعلى */
+    background-color: #5152FC; /* لون الخلفية */
+    border-radius: 50%; /* جعله دائري */
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    transition: background-color 0.3s ease;
+}
 
         /* تعديل الأيقونات */
         .icon-container {
@@ -191,51 +246,135 @@
             margin-bottom: 20px;
         }
 
-        /* المستطيل أسفل الأزرار */
-        .rectangle {
-    background-color: #3EDAB3;
-    height: 50px;
-    border-radius: 10px;
-    margin-top: 20px; /* المسافة بين الأزرار والمستطيل */
-    display: flex; /* استخدام flexbox لتنسيق العناصر */
-    align-items: center; /* محاذاة العناصر عمودياً */
-    padding: 0 10px; /* إضافة حشوة من الجانبين */
+/* Container for the entire slider */
+.slider-container {
+  width: 100%;
+  overflow-x: scroll;  /* Allow horizontal scrolling */
+  overflow-y: hidden;  /* Hide vertical scrollbar */
+  -webkit-overflow-scrolling: touch;  /* Smooth scrolling on mobile */
+  scroll-snap-type: x mandatory;  /* Enable scroll snapping horizontally */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
 }
 
-.rectangle img {
-    height: 40px; /* ضبط ارتفاع الصورة */
-    margin-right: 10px; /* المسافة بين الصورة والنص */
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.slider-container::-webkit-scrollbar {
+  display: none;
 }
 
-.rectangle .text {
-    color: white;
-    font-size: 18px;
-    margin-left: 30px
-}
-
+/* Box container for the slider items */
 .box-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 20px;
-        }
+  display: flex;
+  gap: 20px;
+  padding-bottom: 10px; /* To prevent the last item from being cut off */
+}
 
-        .box {
-            width: 100%; /* عرض الصندوق نسبة مئوية من عرض الحاوية */
-            height: 110px;
-            background-color: #1C1D22;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* Box design */
+.box {
+  width: 100%;
+  height: 110px;
+  background-color: #F8F8F8;
+  border-radius: 20px;
+  border: 0.5px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent items from shrinking */
+  scroll-snap-align: start;  /* Snap to the start of each box */
+}
 
-        .box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
+/* Box image styling */
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+        
+        .stories-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        margin-top: 30px;
+        margin-left: 230px
+    }
+    .story {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.2px solid #888;
+    }
+    
+    .story img {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .story-popup {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+    .story-popup img {
+        max-width: 80%;
+        max-height: 100%;
+        border-radius: 15px;
+    }
+           .close-story {
+              position: absolute;
+              top: 10px;
+              left: 15px;
+              font-size: 24px;
+              color: #fff;
+              
+              z-index: 101;
+            }
+            
+            .progress-bar {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 5px;
+             background: linear-gradient(to right, #5152FC, #fff);
+              width: 100%;
+              border-radius: 5px 5px 0 0;
+              transition: width linear;
+            }
+            
+            /* تنسيق أيقونة إظهار/إخفاء الرصيد */
+.visibility-icon {
+  width: 20px;       /* تحديد عرض الأيقونة */
+  height: 20px;      /* تحديد ارتفاع الأيقونة */
+  margin-left: 10px;  /* إضافة مسافة بين العنوان والأيقونة */
+  transition: transform 0.3s ease; /* إضافة تأثير عند التفاعل مع الأيقونة */
+}
+
+/* تأثير تكبير الأيقونة عند التمرير فوقها */
+.visibility-icon:hover {
+  transform: scale(1.2); /* تكبير الأيقونة عند التمرير فوقها */
+}
+
+.section-title {
+  text-align: right;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.section-title h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -244,156 +383,253 @@
 <div class="container">
     
       <!-- قسم الأيقونات العلوية -->
-      <div class="icon-container">
-        <div class="icon" onclick="navigateTo('go:profile')">
-          <img src="https://img.icons8.com/ios-filled/999/3EDAB3/user.png">
+<div class="icon-container">
+        <div class="icon" onclick="navigateTo('profile.html')">
+          <img src="https://img.icons8.com/ios-filled/999/000/user.png">
         </div>
-        <div class="icon" onclick="navigateTo('go:mene')">
-          <img src="https://img.icons8.com/ios-filled/999/3EDAB3/settings.png">
+        
+        <div class="icon" onclick="navigateTo('mene.html')">
+          <img src="https://img.icons8.com/stamp/999/000/menu.png">
         </div>
-    
       </div>
     
+
+    <div class="story-popup" id="storyPopup">
+      <div class="progress-bar" id="progressBar"></div>
+      <span class="close-story" onclick="closeStoryPopup()">×</span>
+      <img id="storyImage" src="" alt="صورة القصة">
+    </div>
+    
+            <!-- قسم القصص أعلى الصفحة -->
+            <div class="stories-container">
+              <div class="story" onclick="showStoryPopup('https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A1%D9%A7_%D9%A2%D9%A0%D9%A4%D9%A3%D9%A0%D9%A1.jpg?alt=media&token=da0b4799-16ec-49ee-80e2-dff55a46d1a1')">
+                <img src="https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A1%D9%A7_%D9%A2%D9%A0%D9%A4%D9%A8%D9%A5%D9%A8.jpg?alt=media&token=e3075831-d284-4d50-bb3d-211d02fbceb3">
+              </div>
+              <div class="story" onclick="showStoryPopup('https://up6.cc/2024/11/173186611701672.jpg')">
+                <img src="https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A1%D9%A7_%D9%A2%D9%A0%D9%A4%D9%A7%D9%A1%D9%A3.jpg?alt=media&token=2caa91c2-0d90-4037-93d9-cc314557b104">
+              </div>
+              <!-- يمكنك إضافة المزيد من القصص هنا -->
+            </div>
+
       <!-- قسم المعلومات الشخصية -->
       <div class="profile">
         <h2 id="username">your name</h2>
-        <img src="https://img.icons8.com/material-rounded/999/3EDAB3/verified-account.png" class="verification-icon" alt="Verified" style="width: 20px; height: 20px; vertical-align: middle; display: none;" id="verificationIcon" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A0%D9%A3_%D9%A1%D9%A0%D9%A3%D9%A0%D9%A5%D9%A8.png?alt=media&token=d9a7f109-2fa3-4a7d-a0c0-0bbda946a1ef" class="verification-icon" alt="Verified" style="width: 20px; height: 20px; vertical-align: middle; display: none; margin-bottom: 5px; " id="verificationIcon" />
         <p> UID: <span id="uniqueId">Your ID</span>
-          <img src="https://img.icons8.com/ios-glyphs/999/ffffff/copy.png" class="copy-icon" onclick="copyToClipboard()" />
+          <img src="https://img.icons8.com/ios-glyphs/999/000/copy.png" class="copy-icon" onclick="copyToClipboard()" />
         </p>
       </div>
-    
-      <!-- قسم الرصيد -->
-      <div class="balance-container">
-        <h3>رصيدك الحالي</h3>
-        <div class="balance" id="balance">₺0.00</div>
-        <div class="currency">الليرة التركية</div>
+
+<div class="balance-container">
+        <div class="balance-title">
+          <img src="https://img.icons8.com/fluency/999/turkey-circular.png" alt="علم تركيا" class="turkey-flag">
+          <h3>رصيدك بالليرة التركية</h3></div>
+        <div class="balance" id="balance">TL 0.00</div>
+        <div class="currency">الرصيد المتاح</div>
       </div>
     
       <!-- أزرار الإيداع والسحب -->
-      <div class="button-container">
-        <button id="depositButton" onclick="location.href='go:send'">
-          <img src="https://img.icons8.com/ios-filled/999/3EDAB3/sent.png">
-        </button>
-        <button id="withdrawButton" onclick="location.href='go:deposit'">
-          <img src="https://img.icons8.com/color-glass/999/money-circulation.png">
-        </button>
-        <button id="withdrawButton" onclick="location.href='go:withdraw'">
-          <img src="https://img.icons8.com/color-glass/999/refund-2.png">
-        </button>
-        <button id="withdrawButton" onclick="location.href='go:world'">
-          <img src="https://img.icons8.com/material-outlined/999/3EDAB3/geography.png">
-        </button>
+       <div class="button-container">
+         <div class="button-wrapper">
+           <button id="worldButton" onclick="location.href='exchange.html'">
+             <img src="https://img.icons8.com/fluency/999/won-exchange.png">
+           </button>
+           <p class="button-title">سعر الصرف</p>
+         </div>
+         <div class="button-wrapper">
+           <button id="withdrawButton1" onclick="location.href='deposit.html'">
+             <img src="https://img.icons8.com/fluency/999/plus.png">
+           </button>
+           <p class="button-title">إضافة الأموال</p>
+         </div>
+         <div class="button-wrapper">
+           <button id="withdrawButton2" onclick="location.href='withdraw.html'">
+             <img src="https://img.icons8.com/fluency/999/minus.png">
+           </button>
+           <p class="button-title">سحب الأموال</p>
+         </div>
+         <div class="button-wrapper">
+           <button id="depositButton" onclick="location.href='send.html'">
+             <img src="https://img.icons8.com/glassmorphism/999/initiate-money-transfer.png">
+           </button>
+           <p class="button-title">التحويل</p>
+         </div>
+       </div>
+      
+      <div class="section-title">
+        <h3>العروض</h3>
       </div>
     
-      <!-- المستطيل أسفل الأزرار -->
-<div class="rectangle" onclick="window.location.href='go:verified'">
-      <img src="https://img.icons8.com/material-rounded/999/ffffff/verified-account.png" alt="وصف الصورة" />
-      <div class="text">وَثق حسابك بعلامة التحقق</div>
-    </div>
-    
-    <div class="box-container">
-      <div class="box" onclick="window.location.href='go:referral'">
-        <img src="https://raw.githubusercontent.com/Abdulhadi50/UOPWALLET/main/6633.png">
+<div class="slider-container">
+      <div class="box-container">
+        <div class="box" onclick="window.location.href='store.html'">
+          <img src="https://up6.cc/2024/11/1731866357954310.jpg">
+        </div>
+        <div class="box" onclick="window.location.href='verified.html'">
+          <img src="https://firebasestorage.googleapis.com/v0/b/smart-pay-6a9b8.appspot.com/o/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A1%D9%A1%D9%A1%D9%A1_%D9%A0%D9%A9%D9%A0%D9%A8%D9%A5%D9%A9.jpg?alt=media&token=0bb96107-f7f0-4621-964f-119bce093de7">
+        </div>
       </div>
     </div>
+    
 <!-- Popup -->
 <div class="popup" id="popup">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">×</span>
-        <p id="popupMessage">تم نسخ UID إلى الحافظة!</p>
-        <button onclick="closePopup()">موافق</button>
-    </div>
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">×</span>
+    <p id="popupMessage">تم نسخ UID إلى الحافظة!</p>
+    <button onclick="closePopup()">موافق</button>
+  </div>
 </div>
 
 <div class="nav-container">
   <div class="nav">
-    <button onclick="navigateTo('go:redeem')" class="active">
-      <img src="https://img.icons8.com/ios-glyphs/999/ffffff/bank-card-back-side.png">
+    <button onclick="navigateTo('redeem.html')" class="active">
+      <img src="https://img.icons8.com/ios-glyphs/999/5152FC/bank-card-back-side.png">
     </button>
-    <button onclick="navigateTo('go:record')" class="active">
-      <img src="https://img.icons8.com/pixels/999/ffffff/book.png">
+    <button onclick="navigateTo('store.html')" class="active">
+      <img src="https://img.icons8.com/material-rounded/999/5152FC/shop.png">
     </button>
-    <button onclick="navigateTo('go:referral')">
-      <img src="https://img.icons8.com/ios-glyphs/999/ffffff/omnichannel.png">
+        <button onclick="avigateTo('home.html')" class="home-button">
+          <img src="https://img.icons8.com/material-rounded/999/ffffff/home.png">
+        </button>
+    <button onclick="navigateTo('record.html')" class="active">
+      <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/999/5152FC/external-credit-accounting-outline-black-m-oki-orlando.png">
     </button>
-    <button onclic="navigateTo('home.html')">
-      <img src="https://img.icons8.com/material-rounded/999/3EDAB3/home.png">
+    <button onclick="navigateTo('Deposit1.html')" class="active">
+      <img src="https://img.icons8.com/external-outline-black-m-oki-orlando/999/5152FC/external-debit-accounting-outline-black-m-oki-orlando.png">
     </button>
   </div>
 </div>
 
 <script>
 // إعداد Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyADJJPRxJhItXVJ2cEsIymB1WuVVDpQlHI",
-      authDomain: "telegram-mini-app-c3189.firebaseapp.com",
-      projectId: "telegram-mini-app-c3189",
-      storageBucket: "telegram-mini-app-c3189.appspot.com",
-      messagingSenderId: "1078003355289",
-      appId: "1:1078003355289:web:99ce2ce7471a6e5595f208"
-    };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const auth = firebase.auth();
-    
-    // الحصول على المستخدم الحالي وتحديث المعلومات بشكل مباشر
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const uid = user.uid;
-    
-        // جلب البيانات من قاعدة البيانات
-        db.collection("users").doc(uid).get().then(doc => {
-          if (doc.exists) {
-            const data = doc.data();
-            document.getElementById("username").innerText = data.name;
-            document.getElementById("uniqueId").innerText = data.uniqueId;
-    
-            // إضافة فواصل للرصيد باللغة الإنجليزية
-            document.getElementById("balance").innerText = `₺${data.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    
-            // تحقق مما إذا كان المستخدم موثقًا
-            if (data.verified) {
-              document.getElementById("verificationIcon").style.display = "inline"; // عرض صورة التحقق
-            }
-          } else {
-            console.log("لا يوجد مستند للمستخدم.");
-          }
-        }).catch(error => {
-          console.error("خطأ في جلب البيانات:", error);
-        });
+const firebaseConfig = {
+  apiKey: "AIzaSyCd4kBTwhKeJCeuJiaErE0RHX2m8ZpmRtc",
+  authDomain: "smart-pay-6a9b8.firebaseapp.com",
+  projectId: "smart-pay-6a9b8",
+  storageBucket: "smart-pay-6a9b8.appspot.com",
+  messagingSenderId: "9418007073",
+  appId: "1:9418007073:web:0f981978bfd2d8cd263960"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
+
+// الحصول على المستخدم الحالي وتحديث المعلومات بشكل مباشر
+auth.onAuthStateChanged(user => {
+  if (user) {
+    const uid = user.uid;
+
+    // جلب البيانات من قاعدة البيانات
+    db.collection("users").doc(uid).get().then(doc => {
+      if (doc.exists) {
+        const data = doc.data();
+        document.getElementById("username").innerText = data.name;
+        document.getElementById("uniqueId").innerText = data.uniqueId;
+
+        // إضافة فواصل للرصيد باللغة الإنجليزية
+        const formattedBalance = `TL ${data.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        document.getElementById("balance").innerText = formattedBalance;
+
+        // تخزين الرصيد الأصلي في dataset
+        const balanceElement = document.getElementById("balance");
+        balanceElement.dataset.originalBalance = data.balance.toFixed(2); // حفظ الرصيد الأصلي في الـ dataset
+
+        // تحقق مما إذا كان المستخدم موثقًا
+        if (data.verified) {
+          document.getElementById("verificationIcon").style.display = "inline"; // عرض صورة التحقق
+        }
       } else {
-        window.location.href = "login.hml"; // إعادة توجيه المستخدم إذا لم يكن مسجلاً
+        console.log("لا يوجد مستند للمستخدم.");
       }
+    }).catch(error => {
+      console.error("خطأ في جلب البيانات:", error);
     });
-    
-    // وظيفة نسخ UID إلى الحافظة
-    function copyToClipboard() {
-      const uniqueId = document.getElementById("uniqueId").innerText;
-      navigator.clipboard.writeText(uniqueId).then(() => {
-        showPopup("تم نسخ UID إلى الحافظة!"); // عرض الـ Popup
-      }).catch(err => {
-        console.error('خطأ في النسخ إلى الحافظة: ', err);
-      });
-    }
-    
-    // وظيفة لعرض الـ Popup
-    function showPopup(message) {
-      document.getElementById("popupMessage").innerText = message;
-      document.getElementById("popup").style.display = "flex"; // عرض الـ Popup
-    }
-    
-    // وظيفة لإغلاق الـ Popup
-    function closePopup() {
-      document.getElementById("popup").style.display = "none"; // إخفاء الـ Popup
-    }
-    
-    function navigateTo(page) {
-      window.location.href = page;
-    }
-    
+  } else {
+    window.location.href = "login.html"; // إعادة توجيه المستخدم إذا لم يكن مسجلاً
+  }
+});
+
+// وظيفة نسخ UID إلى الحافظة
+function copyToClipboard() {
+  const uniqueId = document.getElementById("uniqueId").innerText;
+  navigator.clipboard.writeText(uniqueId).then(() => {
+    showPopup("تم نسخ UID إلى الحافظة!"); // عرض الـ Popup
+  }).catch(err => {
+    console.error('خطأ في النسخ إلى الحافظة: ', err);
+  });
+}
+
+// وظيفة لعرض الـ Popup
+function showPopup(message) {
+  document.getElementById("popupMessage").innerText = message;
+  document.getElementById("popup").style.display = "flex"; // عرض الـ Popup
+}
+
+// وظيفة لإغلاق الـ Popup
+function closePopup() {
+  document.getElementById("popup").style.display = "none"; // إخفاء الـ Popup
+}
+
+function navigateTo(page) {
+  window.location.href = page;
+}
+
+let storyTimeout;
+
+function showStoryPopup(imageUrl) {
+  const storyPopup = document.getElementById("storyPopup");
+  const storyImage = document.getElementById("storyImage");
+  const progressBar = document.getElementById("progressBar");
+
+  storyImage.src = imageUrl;
+  storyPopup.style.display = "flex";
+
+  // إعادة ضبط شريط التقدم ليبدأ من 100% ثم ينقص تدريجيًا
+  progressBar.style.width = "100%";
+  progressBar.style.transition = "width 10s linear";
+  setTimeout(() => progressBar.style.width = "0%", 10);
+
+  // إغلاق القصة تلقائيًا بعد 5 ثوانٍ
+  storyTimeout = setTimeout(closeStoryPopup, 10000);
+}
+
+function closeStoryPopup() {
+  const storyPopup = document.getElementById("storyPopup");
+  storyPopup.style.display = "none";
+  clearTimeout(storyTimeout); // إيقاف المؤقت
+}
+
+// تحديد الوقت بين التمرير التلقائي (5 ثوانٍ)
+const scrollInterval = 2000; // 5 ثوانٍ
+
+// تحديد container
+const sliderContainer = document.querySelector('.slider-container');
+
+// إضافة مؤقت للتمرير التلقائي
+let currentScrollPosition = 0;
+
+function autoScroll() {
+  const scrollWidth = sliderContainer.scrollWidth;
+  const containerWidth = sliderContainer.offsetWidth;
+
+  // التمرير إلى الموضع التالي
+  if (currentScrollPosition + containerWidth < scrollWidth) {
+    currentScrollPosition += containerWidth;
+  } else {
+    currentScrollPosition = 0; // العودة إلى بداية السلايدر
+  }
+
+  sliderContainer.scrollTo({
+    left: currentScrollPosition,
+    behavior: 'smooth' // تمرير سلس
+  });
+}
+
+// تشغيل التمرير التلقائي كل 5 ثوانٍ
+setInterval(autoScroll, scrollInterval);
+
 </script>
 
 </body>
